@@ -6,39 +6,35 @@
 package edu.unisabana.dyas.samples.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author cesarvefe
  */
-public class Item implements Serializable{
+public class Item implements Serializable {
     private TipoItem tipo;
     private int id;
     private String nombre;
     private String descripcion;
-    private Date fechaLanzamiento;
-    private long tarifaxDia;
-    private String formatoRenta;
+    private String fechalanzamiento;
+    private long tarifaxdia; // Se mantiene como long, ya que es un valor numérico
+    private String formatorenta;
     private String genero;
 
-    public Item(TipoItem tipo, int id, String nombre, String descripcion, Date fechaLanzamiento, long tarifaxDia, String formatoRenta, String genero) {
+    public Item(TipoItem tipo, int id, String nombre, String descripcion, String fechalanzamiento, long tarifaxdia, String formatorenta, String genero) {
         this.tipo = tipo;
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fechaLanzamiento = fechaLanzamiento;
-        this.tarifaxDia = tarifaxDia;
-        this.formatoRenta = formatoRenta;
+        this.fechalanzamiento = fechalanzamiento;
+        this.tarifaxdia = tarifaxdia;
+        this.formatorenta = formatorenta;
         this.genero = genero;
     }
 
     public Item() {
     }
 
-    
-    
-    
     public TipoItem getTipo() {
         return tipo;
     }
@@ -55,8 +51,6 @@ public class Item implements Serializable{
         this.id = id;
     }
 
-
-
     public String getNombre() {
         return nombre;
     }
@@ -69,32 +63,32 @@ public class Item implements Serializable{
         return descripcion;
     }
 
-    public void setDescrpcion(String descrpcion) {
-        this.descripcion = descrpcion;
+    public void setDescripcion(String descripcion) {  // Corrección en el setter
+        this.descripcion = descripcion;
     }
 
-    public Date getFechaLanzamiento() {
-        return fechaLanzamiento;
+    public String getFechalanzamiento() {
+        return fechalanzamiento;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
-        this.fechaLanzamiento = fechaLanzamiento;
+    public void setFechalanzamiento(String fechalanzamiento) {
+        this.fechalanzamiento = fechalanzamiento;
     }
 
-    public long getTarifaxDia() {
-        return tarifaxDia;
+    public long getTarifaxdia() {
+        return tarifaxdia;
     }
 
-    public void setTarifaxDia(long tarifaxDia) {
-        this.tarifaxDia = tarifaxDia;
+    public void setTarifaxdia(long tarifaxdia) { 
+        this.tarifaxdia = tarifaxdia;
     }
 
-    public String getFormatoRenta() {
-        return formatoRenta;
+    public String getFormatorenta() {
+        return formatorenta;
     }
 
-    public void setFormatoRenta(String formatoRenta) {
-        this.formatoRenta = formatoRenta;
+    public void setFormatorenta(String formatorenta) {
+        this.formatorenta = formatorenta;
     }
 
     public String getGenero() {
@@ -107,12 +101,6 @@ public class Item implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + nombre + ", tarifaxDia=" + tarifaxDia + '}';
+        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + nombre + ", tarifaxdia=" + tarifaxdia + ", formatorenta=" + formatorenta +  ", genero=" + genero + '}';
     }
-
-
-    
-    
-    
-    
 }
