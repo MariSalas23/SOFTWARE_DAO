@@ -1,10 +1,70 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
+    <!-- Ajusta la consulta SQL aquí -->
+    <select id="consultarClientes" resultMap="ClienteResult">
+        select
+            c.nombre,
+            c.documento,
+            c.telefono,
+            c.direccion,
+            c.email,
+            c.vetado,
+            ir.CLIENTES_documento as itemRentado_cliente_documento,
+            ir.ITEMS_id as itemRentado_items_id,
+            ir.fechainiciorenta as itemRentado_fechainiciorenta,
+            ir.fechafinrenta as itemRentado_fechafinrenta,
+            i.id as item_id,
+            i.nombre as item_nombre,
+            i.descripcion as item_descripcion,
+            i.fechalanzamiento as item_fechalanzamiento,
+            i.tarifaxdia as item_tarifaxdia,
+            i.formatorenta as item_formatorenta,
+            i.genero as item_genero,
+            ti.id as tipoItem_id,
+            ti.descripcion as tipoItem_descripcion
+        FROM VI_CLIENTES as c
+        LEFT JOIN VI_ITEMRENTADO as ir ON c.documento = ir.CLIENTES_documento
+        LEFT JOIN VI_ITEMS as i ON ir.ITEMS_id = i.id
+        LEFT JOIN VI_TIPOITEM as ti ON i.TIPOITEM_id = ti.id
+    </select>
 
-          	
+    <!-- Mapeo de Cliente -->
+    <resultMap id="ClienteResult" type="Cliente">
+        <id property="documento" column="documento"/>
+        <result property="nombre" column="nombre"/>
+        <result property="telefono" column="telefono"/>
+        <result property="direccion" column="direccion"/>
+        <result property="email" column="email"/>
+        <result property="vetado" column="vetado"/>
+        <!-- Usamos collection para rentados -->
+        <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"/>
+    </resultMap>
+
+    <!-- Mapeo de ItemRentado -->
+    <resultMap id="ItemRentadoResult" type="ItemRentado">
+        <result property="fechainiciorenta" column="itemRentado_fechainiciorenta" javaType="java.util.Date"/>
+        <result property="fechafinrenta" column="itemRentado_fechafinrenta" javaType="java.util.Date"/>
+        <result property="item" javaType="Item" resultMap="ItemResult"/>
+    </resultMap>
+
+    <!-- Mapeo de Item -->
+    <resultMap id="ItemResult" type="Item">
+        <id property="id" column="item_id"/>
+        <result property="nombre" column="item_nombre"/>
+        <result property="descripcion" column="item_descripcion"/>
+        <result property="fechalanzamiento" column="item_fechalanzamiento"/>
+        <result property="tarifaxdia" column="item_tarifaxdia"/>
+        <result property="formatorenta" column="item_formatorenta"/>
+        <result property="genero" column="item_genero"/>
+        <result property="tipo" javaType="TipoItem" resultMap="TipoItemResult"/>
+    </resultMap>
+
+    <!-- Mapeo de TipoItem -->
+    <resultMap id="TipoItemResult" type="TipoItem">
+        <id property="id" column="tipoItem_id"/>
+        <result property="descripcion" column="tipoItem_descripcion"/>
+    </resultMap>
+
 </mapper>

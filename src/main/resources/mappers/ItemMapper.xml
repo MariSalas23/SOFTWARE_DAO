@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ItemMapper">
 
+    <select id="consultarItems" resultType="Item">
+        SELECT * FROM VI_ITEMS
+    </select>
 
-    
-    
+    <select id="consultarItem" parameterType="int" resultType="Item">
+        SELECT * FROM VI_ITEMS WHERE id = #{id}
+    </select>
+
+    <insert id="insertarItem" parameterType="Item">
+        INSERT INTO VI_ITEMS (id, nombre, descripcion, fechalanzamiento, tarifaxdia, formatorenta, genero, TIPOITEM_id)
+        VALUES (#{id}, #{nombre}, #{descripcion}, #{fechalanzamiento}, #{tarifaxdia}, #{formatorenta}, #{genero}, #{tipo.id})
+    </insert>
+
 </mapper>

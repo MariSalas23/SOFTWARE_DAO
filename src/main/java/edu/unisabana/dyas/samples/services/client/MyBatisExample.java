@@ -14,36 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.unisabana.dyas.samples.services.client;
+
+ package edu.unisabana.dyas.samples.services.client;
+
+import java.io.IOException;  // Para cargar el archivo de configuración
+import java.io.InputStream;  // Para usar SqlSessionFactory
+
+import org.apache.ibatis.io.Resources;  // Para usar SqlSession
+import org.apache.ibatis.session.SqlSession;  // Para construir la fábrica de sesiones
+import org.apache.ibatis.session.SqlSessionFactory;  // Para manejar excepciones de entrada/salida
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;  // Para manejar InputStream
+
+import edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper;  // Para usar el Mapper de Cliente
 
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-/**
- *
- * @author cesarvefe
- */
 public class MyBatisExample {
 
-    /**
-     * Método que construye una fábrica de sesiones de MyBatis a partir del
-     * archivo de configuración ubicado en src/main/resources
-     *
-     * @return instancia de SQLSessionFactory
-     */
     public static SqlSessionFactory getSqlSessionFactory() {
         SqlSessionFactory sqlSessionFactory = null;
         if (sqlSessionFactory == null) {
-            InputStream inputStream;
             try {
-                inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+                // Se asegura de que 'Resources' sea importado
+                InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
                 throw new RuntimeException(e.getCause());
@@ -52,31 +44,17 @@ public class MyBatisExample {
         return sqlSessionFactory;
     }
 
-    /**
-     * Programa principal de ejempo de uso de MyBATIS
-     * @param args
-     * @throws SQLException 
-     */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) {
+        // Abre la sesión de MyBatis
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-
         SqlSession sqlss = sessionfact.openSession();
 
-        
-        //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
-        
-        
-        
+        // Asegúrate de importar el ClienteMapper
+        ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
+        System.out.println(cm.consultarClientes());
+
+        // Finaliza y cierra la sesión
         sqlss.commit();
-        
-        
         sqlss.close();
-
-        
-        
     }
-
-
 }
