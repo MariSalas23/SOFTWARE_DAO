@@ -45,15 +45,11 @@ public class MyBatisExample {
     }
 
     public static void main(String args[]) {
-        // Abre la sesión de MyBatis
+  
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
-
-        // Asegúrate de importar el ClienteMapper
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
         System.out.println(cm.consultarClientes());
-
-        // Finaliza y cierra la sesión
         sqlss.commit();
         sqlss.close();
     }
