@@ -6,22 +6,29 @@
 package edu.unisabana.dyas.samples.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 
+/**
+ *
+ * @author cesarvefe
+ */
 public class ItemRentado implements Serializable {
 
     private int id;
-    private Item item;
-    private String fechainiciorenta;  // Cambiar a String
-    private String fechafinrenta;     // Cambiar a String
 
-    public ItemRentado(int id, Item item, String fechainiciorenta, String fechafinrenta) {
+    private Item item;
+    private java.sql.Date fechainiciorenta;
+    private java.sql.Date fechafinrenta;
+
+    public ItemRentado(int id, Item item, Date fechainiciorenta, Date fechafinrenta) {
         this.id = id;
         this.item = item;
         this.fechainiciorenta = fechainiciorenta;
         this.fechafinrenta = fechafinrenta;
     }
 
-    public ItemRentado() {}
+    public ItemRentado() {
+    }
 
     public int getId() {
         return id;
@@ -39,19 +46,19 @@ public class ItemRentado implements Serializable {
         this.item = item;
     }
 
-    public String getFechainiciorenta() {
+    public Date getFechainiciorenta() {
         return fechainiciorenta;
     }
 
-    public void setFechainiciorenta(String fechainiciorenta) {
+    public void setFechainiciorenta(Date fechainiciorenta) {
         this.fechainiciorenta = fechainiciorenta;
     }
 
-    public String getFechafinrenta() {
+    public Date getFechafinrenta() {
         return fechafinrenta;
     }
 
-    public void setFechafinrenta(String fechafinrenta) {
+    public void setFechafinrenta(Date fechafinrenta) {
         this.fechafinrenta = fechafinrenta;
     }
 
@@ -59,4 +66,7 @@ public class ItemRentado implements Serializable {
     public String toString() {
         return "ItemRentado{" + "id=" + id + ", item=" + item + ", fechainiciorenta=" + fechainiciorenta + ", fechafinrenta=" + fechafinrenta + '}';
     }
+
+    
+    
 }

@@ -13,8 +13,8 @@
             c.vetado,
             ir.CLIENTES_documento,
             ir.ITEMS_id,
-            ir.fechainiciorenta,  -- Usar como cadena de texto directamente
-            ir.fechafinrenta,     -- Usar como cadena de texto directamente
+            DATE(ir.fechainiciorenta) AS fechainiciorenta,
+            DATE(ir.fechafinrenta) AS fechafinrenta,
             i.id,
             i.nombre,
             i.descripcion,
@@ -43,12 +43,11 @@
     </resultMap>
 
     <!-- Mapeo de la clase ItemRentado -->
-    <resultMap id="ItemRentadoResult" type="ItemRentado">
-        <id property="id" column="ITEMS_id"/>
-        <result property="fechainiciorenta" column="fechainiciorenta"/>
-        <result property="fechafinrenta" column="fechafinrenta"/>
-        <!-- Asociación con la clase Item -->
-        <association property="item" javaType="Item" resultMap="ItemResult"/>
+    <resultMap id="ItemRentadoResult" type="edu.unisabana.dyas.samples.entities.ItemRentado">
+        <id property="id" column="id"/>
+        <result property="fechainiciorenta" column="fechainiciorenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
+        <result property="fechafinrenta" column="fechafinrenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
+        <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="ItemResult"/>
     </resultMap>
 
     <!-- Mapeo de la clase Item -->
@@ -56,7 +55,7 @@
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
         <result property="descripcion" column="descripcion"/>
-        <result property="fechalanzamiento" column="fechalanzamiento"/>
+        <result property="fechalanzamiento" column="fechalanzamiento" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
         <result property="tarifaxdia" column="tarifaxdia"/>
         <result property="formatorenta" column="formatorenta"/>
         <result property="genero" column="genero"/>

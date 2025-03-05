@@ -6,6 +6,7 @@
 package edu.unisabana.dyas.samples.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  *
@@ -16,12 +17,12 @@ public class Item implements Serializable {
     private int id;
     private String nombre;
     private String descripcion;
-    private String fechalanzamiento;
-    private long tarifaxdia; // Se mantiene como long, ya que es un valor numérico
+    private Date fechalanzamiento;
+    private long tarifaxdia; 
     private String formatorenta;
     private String genero;
 
-    public Item(TipoItem tipo, int id, String nombre, String descripcion, String fechalanzamiento, long tarifaxdia, String formatorenta, String genero) {
+    public Item(TipoItem tipo, int id, String nombre, String descripcion, Date fechalanzamiento, long tarifaxdia, String formatorenta, String genero) {
         this.tipo = tipo;
         this.id = id;
         this.nombre = nombre;
@@ -67,11 +68,11 @@ public class Item implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getFechalanzamiento() {
+    public Date getFechalanzamiento() {
         return fechalanzamiento;
     }
 
-    public void setFechalanzamiento(String fechalanzamiento) {
+    public void setFechalanzamiento(Date fechalanzamiento) {
         this.fechalanzamiento = fechalanzamiento;
     }
 
