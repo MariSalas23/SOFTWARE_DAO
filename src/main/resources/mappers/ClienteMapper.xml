@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
-    <!-- Mapeo de la consulta para obtener los clientes -->
     <select id="consultarClientes" resultMap="ClienteResult">
         SELECT 
             c.nombre,
@@ -30,7 +29,6 @@
         LEFT JOIN VI_TIPOITEM ti ON i.TIPOITEM_id = ti.id;
     </select>
 
-    <!-- Mapeo de la clase Cliente -->
     <resultMap id="ClienteResult" type="Cliente">
         <id property="documento" column="documento"/>
         <result property="nombre" column="nombre"/>
@@ -38,11 +36,9 @@
         <result property="direccion" column="direccion"/>
         <result property="email" column="email"/>
         <result property="vetado" column="vetado"/>
-        <!-- Colección de ItemsRentados -->
         <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"/>
     </resultMap>
 
-    <!-- Mapeo de la clase ItemRentado -->
     <resultMap id="ItemRentadoResult" type="edu.unisabana.dyas.samples.entities.ItemRentado">
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
@@ -50,7 +46,6 @@
         <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="ItemResult"/>
     </resultMap>
 
-    <!-- Mapeo de la clase Item -->
     <resultMap id="ItemResult" type="Item">
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
@@ -59,11 +54,9 @@
         <result property="tarifaxdia" column="tarifaxdia"/>
         <result property="formatorenta" column="formatorenta"/>
         <result property="genero" column="genero"/>
-        <!-- Asociación con la clase TipoItem -->
         <association property="tipo" javaType="TipoItem" resultMap="TipoItemResult"/>
     </resultMap>
 
-    <!-- Mapeo de la clase TipoItem -->
     <resultMap id="TipoItemResult" type="TipoItem">
         <id property="id" column="id"/>
         <result property="descripcion" column="descripcion"/>

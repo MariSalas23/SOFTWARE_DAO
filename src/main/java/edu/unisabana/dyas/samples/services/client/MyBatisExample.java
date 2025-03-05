@@ -17,15 +17,15 @@
 
  package edu.unisabana.dyas.samples.services.client;
 
-import java.io.IOException;  // Para cargar el archivo de configuración
-import java.io.InputStream;  // Para usar SqlSessionFactory
+import java.io.IOException;
+import java.io.InputStream; 
 
-import org.apache.ibatis.io.Resources;  // Para usar SqlSession
-import org.apache.ibatis.session.SqlSession;  // Para construir la fábrica de sesiones
-import org.apache.ibatis.session.SqlSessionFactory;  // Para manejar excepciones de entrada/salida
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;  // Para manejar InputStream
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder; 
 
-import edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper;  // Para usar el Mapper de Cliente
+import edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper;
 
 
 public class MyBatisExample {
