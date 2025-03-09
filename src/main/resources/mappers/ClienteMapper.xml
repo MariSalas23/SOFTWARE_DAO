@@ -29,6 +29,23 @@
         LEFT JOIN VI_TIPOITEM ti ON i.TIPOITEM_id = ti.id;
     </select>
 
+    <select id="consultarCliente" resultMap="ClienteResult" parameterType="map">
+        SELECT 
+            c.documento,
+            c.nombre,
+            c.telefono,
+            c.direccion,
+            c.email,
+            c.vetado
+        FROM VI_CLIENTES c
+        WHERE c.documento = #{idcli}
+    </select>
+
+    <insert id="agregarItemRentadoACliente" parameterType="map">
+        INSERT INTO VI_ITEMRENTADO (CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta)
+        VALUES (#{id}, #{idit}, #{fechainicio}, #{fechafin});
+    </insert>
+
     <resultMap id="ClienteResult" type="Cliente">
         <id property="documento" column="documento"/>
         <result property="nombre" column="nombre"/>
@@ -43,23 +60,8 @@
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
         <result property="fechafinrenta" column="fechafinrenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
-        <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="ItemResult"/>
-    </resultMap>
-
-    <resultMap id="ItemResult" type="Item">
-        <id property="id" column="id"/>
-        <result property="nombre" column="nombre"/>
-        <result property="descripcion" column="descripcion"/>
-        <result property="fechalanzamiento" column="fechalanzamiento" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
-        <result property="tarifaxdia" column="tarifaxdia"/>
-        <result property="formatorenta" column="formatorenta"/>
-        <result property="genero" column="genero"/>
-        <association property="tipo" javaType="TipoItem" resultMap="TipoItemResult"/>
-    </resultMap>
-
-    <resultMap id="TipoItemResult" type="TipoItem">
-        <id property="id" column="id"/>
-        <result property="descripcion" column="descripcion"/>
+        <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"/>
     </resultMap>
 
 </mapper>
+

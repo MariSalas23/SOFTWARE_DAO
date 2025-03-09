@@ -64,7 +64,7 @@ public class Item implements Serializable {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {  // Corrección en el setter
+    public void setDescripcion(String descripcion) {  
         this.descripcion = descripcion;
     }
 
@@ -102,6 +102,6 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + nombre + ", tarifaxdia=" + tarifaxdia + ", formatorenta=" + formatorenta +  ", genero=" + genero + '}';
+        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + nombre + "tipo=" + tipo + ", tarifaxdia=" + tarifaxdia + ", formatorenta=" + formatorenta +  ", genero=" + genero + '}';
     }
 }
