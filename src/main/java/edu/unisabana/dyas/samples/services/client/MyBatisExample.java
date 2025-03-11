@@ -82,8 +82,8 @@ public class MyBatisExample {
         newItem.setTipo(tipoItem);
         itemMapper.insertarItem(newItem);
         
-        System.out.println("\nLista de los items:");
-        System.out.println(itemMapper.consultarItems());
+        //System.out.println("\nLista de los items:");
+        //System.out.println(itemMapper.consultarItems());
 
         Item itemConsultado = itemMapper.consultarItem(4);
         if (itemConsultado != null) {
