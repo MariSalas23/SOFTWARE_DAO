@@ -70,20 +70,26 @@ public class MyBatisExample {
 
         ItemMapper itemMapper = sqlss.getMapper(ItemMapper.class);
 
-        Item newItem = new Item();
-        newItem.setId(4);
-        newItem.setNombre("Nuevo Item");
-        newItem.setDescripcion("Descripción del nuevo item");
-        newItem.setFechalanzamiento(Date.valueOf("2005-01-23"));
-        newItem.setTarifaxdia(1000);
-        newItem.setFormatorenta("Diario");
-        newItem.setGenero("Electrodoméstico");
-        TipoItem tipoItem = new TipoItem(1, "Electrónico");
-        newItem.setTipo(tipoItem);
-        itemMapper.insertarItem(newItem);
+        Item existingItem = itemMapper.consultarItem(4);
+        if (existingItem == null) {
+            Item newItem = new Item();
+            newItem.setId(4);
+            newItem.setNombre("Nuevo Item");
+            newItem.setDescripcion("Descripción del nuevo item");
+            newItem.setFechalanzamiento(Date.valueOf("2005-01-23"));
+            newItem.setTarifaxdia(1000);
+            newItem.setFormatorenta("Diario");
+            newItem.setGenero("Electrodoméstico");
+            TipoItem tipoItem = new TipoItem(1, "Electrónico");
+            newItem.setTipo(tipoItem);
+            itemMapper.insertarItem(newItem);
+            System.out.println("Nuevo item insertado con ID 4.");
+        } else {
+            System.out.println("El item con ID 4 ya existe, no se insertará.");
+        }
         
-        //System.out.println("\nLista de los items:");
-        //System.out.println(itemMapper.consultarItems());
+        System.out.println("\nLista de los items:");
+        System.out.println(itemMapper.consultarItems());
 
         Item itemConsultado = itemMapper.consultarItem(4);
         if (itemConsultado != null) {
