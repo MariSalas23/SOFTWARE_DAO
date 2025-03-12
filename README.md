@@ -136,6 +136,8 @@ En este taller se utilizará un 'framework' de persistencia. La base de datos qu
     ...
     ```
 
+![](img/parte1.png)
+
 ## Parte II 
 
 1. Configure en el XML correspondiente, la operación consultarCliente(int id) del 'mapper' ClienteMapper.
