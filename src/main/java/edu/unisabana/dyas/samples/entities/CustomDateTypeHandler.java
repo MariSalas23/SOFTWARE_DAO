@@ -11,23 +11,22 @@ import org.apache.ibatis.type.JdbcType;
 
 public class CustomDateTypeHandler extends BaseTypeHandler<java.sql.Date> {
 
-    // Define the date format (only year, month, day)
+    // Definir formato
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, java.sql.Date parameter, JdbcType jdbcType) throws SQLException {
-        // Convert java.sql.Date to String (YYYY-MM-DD format)
+        // Convertir java.sql.Date a String (YYYY-MM-DD format)
         ps.setString(i, format.format(parameter));
     }
 
     @Override
     public java.sql.Date getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        // Retrieve the date as a String and convert it to java.sql.Date
         String date = rs.getString(columnName);
         if (date != null) {
             try {
-                Date utilDate = format.parse(date);  // Convert String to java.util.Date
-                return new java.sql.Date(utilDate.getTime());  // Convert to java.sql.Date
+                Date utilDate = format.parse(date);  // Convertir String a java.util.Date
+                return new java.sql.Date(utilDate.getTime());  // Convertir a java.sql.Date
             } catch (Exception e) {
                 throw new SQLException("Unable to parse date: " + date, e);
             }
@@ -37,12 +36,11 @@ public class CustomDateTypeHandler extends BaseTypeHandler<java.sql.Date> {
 
     @Override
     public java.sql.Date getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        // Retrieve the date as a String and convert it to java.sql.Date
         String date = rs.getString(columnIndex);
         if (date != null) {
             try {
-                Date utilDate = format.parse(date);  // Convert String to java.util.Date
-                return new java.sql.Date(utilDate.getTime());  // Convert to java.sql.Date
+                Date utilDate = format.parse(date);  // Convertir a java.util.Date
+                return new java.sql.Date(utilDate.getTime());  // Convertir a java.sql.Date
             } catch (Exception e) {
                 throw new SQLException("Unable to parse date: " + date, e);
             }
@@ -52,12 +50,11 @@ public class CustomDateTypeHandler extends BaseTypeHandler<java.sql.Date> {
 
     @Override
     public java.sql.Date getNullableResult(java.sql.CallableStatement cs, int columnIndex) throws SQLException {
-        // Retrieve the date as a String and convert it to java.sql.Date
         String date = cs.getString(columnIndex);
         if (date != null) {
             try {
-                Date utilDate = format.parse(date);  // Convert String to java.util.Date
-                return new java.sql.Date(utilDate.getTime());  // Convert to java.sql.Date
+                Date utilDate = format.parse(date);  // Convertir a java.util.Date
+                return new java.sql.Date(utilDate.getTime());  // Convertir a java.sql.Date
             } catch (Exception e) {
                 throw new SQLException("Unable to parse date: " + date, e);
             }

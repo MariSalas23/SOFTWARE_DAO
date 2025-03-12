@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
+    <!-- Consultar todos los clientes -->
     <select id="consultarClientes" resultMap="ClienteResult">
         SELECT 
             c.nombre,
@@ -29,6 +30,7 @@
         LEFT JOIN VI_TIPOITEM ti ON i.TIPOITEM_id = ti.id;
     </select>
 
+    <!-- Consultar cliente específico -->
     <select id="consultarCliente" resultMap="ClienteResult" parameterType="map">
         SELECT 
             c.documento,
@@ -41,6 +43,7 @@
         WHERE c.documento = #{idcli}
     </select>
 
+    <!-- Mostrar resultado del cliente -->
     <resultMap id="ClienteResult" type="Cliente">
         <id property="documento" column="documento"/>
         <result property="nombre" column="nombre"/>
@@ -48,9 +51,11 @@
         <result property="direccion" column="direccion"/>
         <result property="email" column="email"/>
         <result property="vetado" column="vetado"/>
+        <!-- Colección de items rentados del cliente -->
         <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"/>
     </resultMap>
 
+    <!-- Resultado de item rentado -->
     <resultMap id="ItemRentadoResult" type="ItemRentado">
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
@@ -58,6 +63,7 @@
         <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"/>
     </resultMap>
 
+    <!-- Insertar un item a la tabla de items rentados -->
     <insert id="agregarItemRentadoACliente" parameterType="map">
         INSERT INTO VI_ITEMRENTADO (CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta)
         VALUES (#{id}, #{idit}, #{fechainicio}, #{fechafin});

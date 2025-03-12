@@ -52,11 +52,15 @@ public class MyBatisExample {
   
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
+        // Obtener mapper para la interfaz ClienteMapper
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
+        // Consultar todos los clientes
         System.out.println("PARTE I:\n");
         System.out.println(cm.consultarClientes());
 
+        // PARTE II
         System.out.println("\nPARTE II:");
+        // Consultar cliente con cierto ID
         Cliente cliente = cm.consultarCliente(123456789); 
         if (cliente != null) {
             System.out.println("\nCliente encontrado:");
@@ -65,11 +69,14 @@ public class MyBatisExample {
             System.out.println("Direccion: " + cliente.getDireccion());
             System.out.println("Email: " + cliente.getEmail());
         } else {
+            // Mensaje de cliente no encontrado
             System.out.println("Cliente no encontrado.");
         }
 
+        // Obtener mapper para la interfaz ItemMapper
         ItemMapper itemMapper = sqlss.getMapper(ItemMapper.class);
 
+        // Insertar nuevo item
         System.out.println("\nInsertar nuevo item:");
         Item existingItem = itemMapper.consultarItem(4);
         if (existingItem == null) {
@@ -86,12 +93,15 @@ public class MyBatisExample {
             itemMapper.insertarItem(newItem);
             System.out.println("Nuevo item insertado.");
         } else {
+            // Mensaje de que ya existe, ID es único
             System.out.println("El item con ID 4 ya existe, no se insertará.");
         }
         
+        // Consultar todos los items
         System.out.println("\nLista de los items:");
         System.out.println(itemMapper.consultarItems());
 
+        // Consultar nuevo item
         Item itemConsultado = itemMapper.consultarItem(4);
         if (itemConsultado != null) {
             System.out.println("\nItem nuevo encontrado:");
@@ -107,7 +117,7 @@ public class MyBatisExample {
             System.out.println("Item no encontrado.");
         }
 
-        // Asignar el item 4 a un cliente
+        // Asignar el item 4 a un cliente. La acción solo se requiere correr una vez
         /*System.out.println("\nRentar el item:");
         cm.agregarItemRentadoACliente(123456789, 4, Date.valueOf("2024-03-25"), Date.valueOf("2024-04-01"));
         System.out.println("Item 4 asignado al cliente 123456789."); */
