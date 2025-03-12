@@ -136,6 +136,8 @@ En este taller se utilizará un 'framework' de persistencia. La base de datos qu
     ...
     ```
 
+![](img/parte1.png)
+
 ## Parte II 
 
 1. Configure en el XML correspondiente, la operación consultarCliente(int id) del 'mapper' ClienteMapper.
@@ -169,6 +171,10 @@ En este taller se utilizará un 'framework' de persistencia. La base de datos qu
     ```
     
     Verifique el funcionamiento haciendo una consulta a través del 'mapper' desde MyBatisExample.
+
+![](img/parte2.png)
+![](img/tabla1.png)
+![](img/tabla2.png)
 
 ## Parte III (Opcional)
 
