@@ -53,7 +53,7 @@ public class MyBatisExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
-        System.out.println("PARTE I:");
+        System.out.println("PARTE I:\n");
         System.out.println(cm.consultarClientes());
 
         System.out.println("\nPARTE II:");
@@ -84,9 +84,9 @@ public class MyBatisExample {
             TipoItem tipoItem = new TipoItem(1, "Electrónico");
             newItem.setTipo(tipoItem);
             itemMapper.insertarItem(newItem);
-            System.out.println("\nNuevo item insertado.");
+            System.out.println("Nuevo item insertado.");
         } else {
-            System.out.println("\nEl item con ID 4 ya existe, no se insertará.");
+            System.out.println("El item con ID 4 ya existe, no se insertará.");
         }
         
         System.out.println("\nLista de los items:");
@@ -107,10 +107,10 @@ public class MyBatisExample {
             System.out.println("Item no encontrado.");
         }
 
-        // Asignar el item 4 a un cliente (por ejemplo, cliente con documento 123456789)
-        System.out.println("\nRentar el item:");
+        // Asignar el item 4 a un cliente
+        /*System.out.println("\nRentar el item:");
         cm.agregarItemRentadoACliente(123456789, 4, Date.valueOf("2024-03-25"), Date.valueOf("2024-04-01"));
-        System.out.println("Item 4 asignado al cliente 123456789.");
+        System.out.println("Item 4 asignado al cliente 123456789."); */
         
         sqlss.commit();
         sqlss.close();
