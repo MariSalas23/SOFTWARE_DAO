@@ -136,7 +136,7 @@ En este taller se utilizará un 'framework' de persistencia. La base de datos qu
     ...
     ```
 
-![](img/parte1.png)
+![](parte1.png)
 
 ## Parte II 
 
