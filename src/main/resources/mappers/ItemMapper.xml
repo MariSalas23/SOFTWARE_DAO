@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ItemMapper">
 
-    <insert id="insertarItem" parameterType="edu.unisabana.dyas.samples.entities.Item">
+    <insert id="insertarItem" parameterType="Item">
         INSERT INTO VI_ITEMS (id, nombre, descripcion, fechalanzamiento, tarifaxdia, formatorenta, genero, TIPOITEM_id)
         VALUES (#{id}, #{nombre}, #{descripcion}, #{fechalanzamiento}, #{tarifaxdia}, #{formatorenta}, #{genero}, #{tipo.id});
     </insert>
@@ -24,7 +24,7 @@
         DELETE FROM VI_ITEMS WHERE id = #{id};
     </delete>
 
-    <resultMap id="ItemResult" type="edu.unisabana.dyas.samples.entities.Item">
+    <resultMap id="ItemResult" type="Item">
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
         <result property="descripcion" column="descripcion"/>

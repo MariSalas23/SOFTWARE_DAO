@@ -41,11 +41,6 @@
         WHERE c.documento = #{idcli}
     </select>
 
-    <insert id="agregarItemRentadoACliente" parameterType="map">
-        INSERT INTO VI_ITEMRENTADO (CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta)
-        VALUES (#{id}, #{idit}, #{fechainicio}, #{fechafin});
-    </insert>
-
     <resultMap id="ClienteResult" type="Cliente">
         <id property="documento" column="documento"/>
         <result property="nombre" column="nombre"/>
@@ -56,12 +51,16 @@
         <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"/>
     </resultMap>
 
-    <resultMap id="ItemRentadoResult" type="edu.unisabana.dyas.samples.entities.ItemRentado">
+    <resultMap id="ItemRentadoResult" type="ItemRentado">
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
         <result property="fechafinrenta" column="fechafinrenta" typeHandler="edu.unisabana.dyas.samples.entities.CustomDateTypeHandler"/>
         <association property="item" javaType="edu.unisabana.dyas.samples.entities.Item" resultMap="edu.unisabana.dyas.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"/>
     </resultMap>
 
+    <insert id="agregarItemRentadoACliente" parameterType="map">
+        INSERT INTO VI_ITEMRENTADO (CLIENTES_documento, ITEMS_id, fechainiciorenta, fechafinrenta)
+        VALUES (#{id}, #{idit}, #{fechainicio}, #{fechafin});
+    </insert>
 </mapper>
 
